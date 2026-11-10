@@ -131,6 +131,10 @@ void loop() {
     return;
   }
 
+  // Remember that we left the connected state so a reconnect redraws
+  // immediately, even when the assigned IP address stays the same.
+  lastStatus = status;
+
   if (now - lastScreenRefreshMs >= kScreenRefreshMs) {
     if (now - lastConnectAttemptMs < kConnectTimeoutMs) {
       drawMessage("ESP32 Wi-Fi status", "Connecting...", "Please wait");
